@@ -59,7 +59,24 @@ body{
   -khtml-user-select: none;
   -webkit-user-select: none;
   user-select: none;
+
+  //! it should working (переключение режимов игры через .CSS
+  &_easy{
+    grid-template-columns: repeat(10, 40px);
+    font-size: 30px;
+		height: 40px;
+  }
+  &_normal{
+    grid-template-columns: repeat(15, 27px);
+  }
+  &_hard{
+    grid-template-columns: repeat(20, 23px);
+    font-size:  18px;
+    height: 23px;
+  }
+  
 }
+
 .fields__cell{
 	cursor: pointer;
   font-weight: 800;

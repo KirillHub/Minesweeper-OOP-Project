@@ -1,4 +1,3 @@
-
 export default interface DomElements {
 	flagsCounterBlock: HTMLInputElement | null;
 	field: HTMLInputElement | null;
@@ -6,3 +5,4 @@ export default interface DomElements {
 	buttonsParentDiv: HTMLInputElement | null;
 	endGameText: HTMLInputElement | null;
 }
+

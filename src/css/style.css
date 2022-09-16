@@ -148,6 +148,19 @@ body {
   -ms-user-select: none;
       user-select: none;
 }
+.field_easy {
+  grid-template-columns: repeat(10, 40px);
+  font-size: 30px;
+  height: 40px;
+}
+.field_normal {
+  grid-template-columns: repeat(15, 27px);
+}
+.field_hard {
+  grid-template-columns: repeat(20, 23px);
+  font-size: 18px;
+  height: 23px;
+}
 
 .fields__cell {
   cursor: pointer;
