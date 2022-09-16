@@ -7,3 +7,19 @@ const domElements: DomElements = {
 	"buttonsParentDiv": document.querySelector('.buttons-config'),
 	"endGameText": document.querySelector('.end-game')
 };
+
+
+
+//! больше обстракции
+export class GlobalGameData {
+	// public domElementsData = domElements;
+
+	constructor() {
+		// this.domElementsData.buttonsParentDiv;
+	}
+
+	//? protected, private
+}
+
+
+// class 
