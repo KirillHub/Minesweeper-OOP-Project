@@ -1,5 +1,6 @@
 import DomElements from "./types/DOMElementTypes";
 
+/*
 const domElements: DomElements = {
 	"flagsCounterBlock": document.querySelector(".main-title__flags-counter"),
 	"field": document.querySelector('.field'),
@@ -9,6 +10,7 @@ const domElements: DomElements = {
 };
 
 
+*/
 
 //! больше обстракции
 export class GlobalGameData {

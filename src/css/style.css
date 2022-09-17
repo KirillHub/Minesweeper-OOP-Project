@@ -155,6 +155,8 @@ body {
 }
 .field_normal {
   grid-template-columns: repeat(15, 27px);
+  height: 35px;
+  font-size: 20px;
 }
 .field_hard {
   grid-template-columns: repeat(20, 23px);

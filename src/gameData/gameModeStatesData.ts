@@ -1,4 +1,4 @@
-import GameModeStatesTypesData from "./types/gameModeStatesTypesData";
+import GameModeStatesTypesData from "./types/gameModeStatesTypesData.js";
 
 const easyGameMode: GameModeStatesTypesData = {
 	"WIDTH": 10,
@@ -18,5 +18,5 @@ const hardGameMode: GameModeStatesTypesData = {
 	"BOMBS_COUNT": 80,
 };
 
-export const arrayGameModeStates: object[] | null =
-	[easyGameMode, normalGameMode, hardGameMode];
+export const arrayGameModeStates: Array<Object>
+	= [easyGameMode, normalGameMode, hardGameMode];

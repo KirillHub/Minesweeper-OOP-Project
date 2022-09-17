@@ -68,6 +68,8 @@ body{
   }
   &_normal{
     grid-template-columns: repeat(15, 27px);
+    height: 35px;
+    font-size: 20px;
   }
   &_hard{
     grid-template-columns: repeat(20, 23px);
