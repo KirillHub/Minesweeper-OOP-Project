@@ -1,4 +1,3 @@
-// теперь подход - менять классы в зависимости от нажатия кнопки
 import { arrayGameModeStates } from "../gameData/gameModeStatesData.js";
 import DomElements from "../gameData/types/DOMElementTypes.js";
 // import { qSelectedBodyElements } from "../gameData/bodyElementsClassNameData.js";
@@ -78,6 +77,8 @@ export default class Board {
 			}
 		};
 	};
+
+
 }
 
 
