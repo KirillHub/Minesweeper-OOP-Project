@@ -141,7 +141,6 @@ body {
   margin: 0 auto;
   display: grid;
   grid-template-columns: repeat(15, 27px);
-  outline: 15px solid rgba(126, 54, 54, 0.678);
   -moz-user-select: -moz-none;
   -o-user-select: none;
   -webkit-user-select: none;
@@ -149,26 +148,33 @@ body {
       user-select: none;
 }
 .field_easy {
+  outline: 18px solid rgba(126, 54, 54, 0.678);
   grid-template-columns: repeat(10, 40px);
-  font-size: 30px;
+}
+.field_easy .fields__cell {
   height: 40px;
+  font-size: 30px;
 }
 .field_normal {
+  outline: 16px solid rgba(126, 54, 54, 0.678);
   grid-template-columns: repeat(15, 27px);
-  height: 35px;
-  font-size: 20px;
+}
+.field_normal .fields__cell {
+  height: 27px;
+  font-size: 22px;
 }
 .field_hard {
+  outline: 13px solid rgba(126, 54, 54, 0.678);
   grid-template-columns: repeat(20, 23px);
-  font-size: 18px;
+}
+.field_hard .fields__cell {
   height: 23px;
+  font-size: 19px;
 }
 
 .fields__cell {
   cursor: pointer;
   font-weight: 800;
-  height: 27px;
-  font-size: 22px;
   display: flex;
   justify-content: center;
   align-items: center;

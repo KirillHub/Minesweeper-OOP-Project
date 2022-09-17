@@ -1,10 +1,13 @@
 'use strict'
 
-// import { gameModeStates } from "../dist/controllerDataStates.js";
-// import { GameModelsStatesProperty } from "../dist/GameSettingDataConfig.js";
-// import { GameBoardTest } from "../dist/gameManager.js";
+import { arrayGameModeStates } from "../dist/gameData/gameModeStatesData.js";
+// import DomElements from "../dist/gameData/types/DOMElementTypes.js";
+import { qSelectedBodyElements } from "../dist/gameData/bodyElementsClassNameData.js";
 
-// import { GameTest } from "../dist/"
-// import { gameMode } from "../dist/GameSettingDataConfig.js";
+import Board from "../dist/UI/Board.js";
+
+
+const board = new Board(qSelectedBodyElements, arrayGameModeStates);
+board.toggleFieldStyleStates();
 
 

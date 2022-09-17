@@ -52,38 +52,45 @@ body{
 	margin: 0 auto;
 	display: grid;
 	grid-template-columns: repeat(15, 27px);
-  outline: 15px solid rgba(126, 54, 54, 0.678);
 
   -moz-user-select: -moz-none;
   -o-user-select: none;
   -khtml-user-select: none;
   -webkit-user-select: none;
-  user-select: none;
+  user-select: none;  
 
-  //! it should working (переключение режимов игры через .CSS
-  &_easy{
-    grid-template-columns: repeat(10, 40px);
-    font-size: 30px;
-		height: 40px;
-  }
-  &_normal{
-    grid-template-columns: repeat(15, 27px);
-    height: 35px;
-    font-size: 20px;
-  }
-  &_hard{
-    grid-template-columns: repeat(20, 23px);
-    font-size:  18px;
-    height: 23px;
-  }
-  
+    &_easy{
+      outline: 18px solid rgba(126, 54, 54, 0.678);
+      grid-template-columns: repeat(10, 40px);
+
+      .fields__cell{
+        height: 40px;
+        font-size: 30px;
+      }
+    }
+       &_normal{
+      outline: 16px solid rgba(126, 54, 54, 0.678);
+      grid-template-columns: repeat(15, 27px);
+
+      .fields__cell{
+        height: 27px;
+        font-size: 22px;
+      }
+    }
+       &_hard{
+      outline: 13px solid rgba(126, 54, 54, 0.678);
+      grid-template-columns: repeat(20, 23px);
+
+      .fields__cell{
+        height: 23px;
+        font-size: 19px;
+      }
+    }
 }
 
 .fields__cell{
 	cursor: pointer;
   font-weight: 800;
-  height: 27px;
-	font-size: 22px;
 	display: flex;
 	justify-content: center;
 	align-items: center;
