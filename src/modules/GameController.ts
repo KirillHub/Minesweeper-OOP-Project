@@ -1,12 +1,10 @@
-import { qSelectedBodyElements } from "./bodyElementsClassNameData.js";
-import DomElements from "./types/DOMElementTypes.js";
+import { qSelectedBodyElements } from "../gameData/bodyElementsClassNameData.js";
+import DomElements from "../gameData/types/DOMElementTypes.js";
 
-export class GlobalGameData {
+export default class GameController {
 	index: number | undefined;
 	column: number | undefined;
 	row: number | undefined;
-	// cells: Array<NodeListOf<Element>> | null;
-	// cells: any;
 	cellsArray: any = new Array();
 
 	constructor(
@@ -15,12 +13,17 @@ export class GlobalGameData {
 		this.domElement = domElement;
 	}
 
+	userController() {
+		this.domElement.field?.addEventListener('click', (event) => {
+			event.preventDefault();
+			const selector = event.target;
+			console.log(selector);
+		})
+	}
 	//! в дальнейшем использую вместо arrayChildrenCells
 	getfieldCellsChildrens() {
 		this.domElement.fieldCellsChildren = document.querySelectorAll('.fields__cell');
 		this.cellsArray = [...this.domElement.fieldCellsChildren];
-		// console.log(this.cellsArray);
-		// console.log(this.domElement.fieldCellsChildren);
 	}
 
 	getTargetIndex() {
@@ -28,6 +31,4 @@ export class GlobalGameData {
 	}
 
 }
-const abc = new GlobalGameData(qSelectedBodyElements);
-console.log(abc);
-// console.log(abc.cells);
+const abc = new GameController(qSelectedBodyElements);

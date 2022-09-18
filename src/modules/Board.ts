@@ -34,14 +34,17 @@ export default class Board {
 					case "Easy":
 						this.domElement.field?.classList.add('field_easy');
 						this.boardCreation(arrayGameModeStates[0]);
+						// this.boardCoordinates(arrayGameModeStates[0]);
 						break;
 					case "Normal":
 						this.domElement.field?.classList.add('field_normal');
 						this.boardCreation(arrayGameModeStates[1]);
+						// this.boardCoordinates(arrayGameModeStates[1]);
 						break;
 					case "Hard":
 						this.domElement.field?.classList.add('field_hard');
 						this.boardCreation(arrayGameModeStates[2]);
+						// this.boardCoordinates(arrayGameModeStates[2]);
 						break;
 					default:
 						return;
@@ -90,11 +93,11 @@ export default class Board {
 		}
 	};
 
-	private boardCoordinates(gameStatesData: Array<object>) {
-		gameStatesData.forEach(item => {
-			console.log(item);
-		})
-	}
+	// private boardCoordinates(gameStatesData: any) {
+	// 	console.log(gameStatesData);
+	// 	// const WIDTH: number = gameStatesData.WIDTH;
+	// 	// console.log(WIDTH);
+	// }
 }
 
 
