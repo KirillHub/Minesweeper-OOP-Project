@@ -1,36 +1,23 @@
-// import GameDataControllerTypes from "./types/gameDataControllerTypes.js";
-// import GameModeStatesTypesData from "./types/gameModeStatesTypesData.js";
+import { qSelectedBodyElements } from "./bodyElementsClassNameData.js";
+import DomElements from "./types/DOMElementTypes.js";
 
 export class GlobalGameData {
-	// private gameDataControllerTypes: GameDataControllerTypes;
-	// private gameModeStatesTypesData: GameModeStatesTypesData;
-	// gameModeStatesTypesData:
-	index: number | undefined;
-	column: number | undefined;
-	row: number | undefined;
-	cells: Array<object> | null;
-	fieldCellsChildren: NodeListOf<Element> | null;
 
 	constructor(
-		// public globalDataController: GameDataControllerTypes,
-		// public modeStatesTypesData: GameModeStatesTypesData
+		private domElement: DomElements
+
 	) {
-		this.index;
-		this.column;
-		this.row;
-		this.fieldCellsChildren = document.querySelectorAll('.fields__cell');
-		this.cells = [...this.fieldCellsChildren];
-
-		// this.gameDataControllerTypes = globalDataController;
-		// this.gameModeStatesTypesData = modeStatesTypesData;
-
+		this.domElement = domElement;
+		console.log(this.domElement);
 
 	}
 
 	getArrayChildrenCells() {
 
 	}
+
 	getTargetIndex() {
 
 	}
 }
+// const abc = new GlobalGameData(qSelectedBodyElements);

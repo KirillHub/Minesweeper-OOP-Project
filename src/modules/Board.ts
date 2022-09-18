@@ -1,6 +1,5 @@
 import { arrayGameModeStates } from "../gameData/gameModeStatesData.js";
 import DomElements from "../gameData/types/DOMElementTypes.js";
-// import { qSelectedBodyElements } from "../gameData/bodyElementsClassNameData.js";
 
 export default class Board {
 	protected domElement: DomElements;
@@ -9,7 +8,7 @@ export default class Board {
 
 	constructor(
 		protected domElements: DomElements,
-		protected activatorGameStatesMode: object | Array<Object> | undefined,
+		protected activatorGameStatesMode: object | Array<Object>,
 	) {
 		this.domElement = domElements;
 		this.counter = -1;
@@ -17,7 +16,6 @@ export default class Board {
 	}
 
 	public toggleFieldStyleStates(): void {
-
 		this.domElement.buttonsParentDiv?.addEventListener('click', (event) => {
 			const target = event.target as HTMLInputElement;
 			try {
@@ -49,7 +47,10 @@ export default class Board {
 						return;
 				}
 			} catch (error) {
-				console.error(error);
+				if (typeof this.domElement.field?.innerText != "undefined") {
+					this.domElement.field.innerText = "sorry, something go wrong!" + alert(error);
+					setTimeout(() => { window.location.reload() }, 2000);
+				}
 			}
 		});
 	};
@@ -57,28 +58,37 @@ export default class Board {
 	private boardCreation(gameStatesData: any): void {
 		if (this.counter !== -1) this.counter = -1;
 
-		for (let i: number = 0; i < gameStatesData.WIDTH; i++) {
-			for (let j: number = 0; j < gameStatesData.HEIGHT; j++) {
-				this.counter++;
-				this.number = i + j + 2;
-				const unpairMaskBlock: HTMLDivElement = document.createElement('div');
-				const pairMaskBlock: HTMLDivElement = document.createElement('div');
-				unpairMaskBlock.classList.add('fields__hover-class', "fields__cell");
-				pairMaskBlock.classList.add('fields__hover-class', "fields__cell");
+		if (typeof this.domElement.flagsCounterBlock?.innerText !== "undefined") {
+			this.domElement.flagsCounterBlock.innerText = gameStatesData.BOMBS_COUNT;
+		}
 
-				if (this.number % 2 === 0) {
-					pairMaskBlock.style.backgroundColor = '#a9d751';
-					this.domElement.field?.append(pairMaskBlock);
+		try {
+			for (let i: number = 0; i < gameStatesData.WIDTH; i++) {
+				for (let j: number = 0; j < gameStatesData.HEIGHT; j++) {
+					this.counter++;
+					this.number = i + j + 2;
+					const unpairMaskBlock: HTMLDivElement = document.createElement('div');
+					const pairMaskBlock: HTMLDivElement = document.createElement('div');
+					unpairMaskBlock.classList.add('fields__hover-class', "fields__cell");
+					pairMaskBlock.classList.add('fields__hover-class', "fields__cell");
+
+					if (this.number % 2 === 0) {
+						pairMaskBlock.style.backgroundColor = '#a9d751';
+						this.domElement.field?.append(pairMaskBlock);
+					}
+					if (this.number % 2 !== 0) {
+						unpairMaskBlock.style.backgroundColor = '#a2d049';
+						this.domElement.field?.append(unpairMaskBlock);
+					}
 				}
-				if (this.number % 2 !== 0) {
-					unpairMaskBlock.style.backgroundColor = '#a2d049';
-					this.domElement.field?.append(unpairMaskBlock);
-				}
+			};
+		} catch (error) {
+			if (typeof this.domElement.field?.innerText != "undefined") {
+				this.domElement.field.innerText = "sorry, something go wrong!" + alert(error);
+				setTimeout(() => { window.location.reload() }, 2000);
 			}
-		};
+		}
 	};
-
-
 }
 
 

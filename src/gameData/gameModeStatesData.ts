@@ -18,5 +18,5 @@ const hardGameMode: GameModeStatesTypesData = {
 	"BOMBS_COUNT": 80,
 };
 
-export const arrayGameModeStates: Array<Object>
+export const arrayGameModeStates: Array<object>
 	= [easyGameMode, normalGameMode, hardGameMode];

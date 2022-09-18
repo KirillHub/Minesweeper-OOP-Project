@@ -100,6 +100,18 @@ body {
   -webkit-user-select: none;
   -ms-user-select: none;
       user-select: none;
+  /*
+    &::before{
+      position: absolute;
+      content: "select the game mode";
+      text-transform: uppercase;
+      bottom: 60%;
+      left: 40%;
+      font-size: 26px;
+      font-weight: 900;
+      color:rgb(223, 97, 24);
+    }
+  */
 }
 
 .wrapper {
@@ -146,6 +158,9 @@ body {
   -webkit-user-select: none;
   -ms-user-select: none;
       user-select: none;
+  position: relative;
+  z-index: 100;
+  transition: all 1s;
 }
 .field_easy {
   outline: 18px solid rgba(126, 54, 54, 0.678);
