@@ -3,7 +3,7 @@ export default interface GameDataControllerTypes {
 	column: number | undefined;
 	row: number | undefined;
 	cells: Array<NodeListOf<Element>> | null;
-	fieldCellsChildren: NodeListOf<Element> | null;
+	// fieldCellsChildren: NodeListOf<Element> | null;
 
 
 	/*

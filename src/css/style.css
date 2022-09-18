@@ -160,7 +160,7 @@ body {
       user-select: none;
   position: relative;
   z-index: 100;
-  transition: all 1s;
+  transition: all 0.6s;
 }
 .field_easy {
   outline: 18px solid rgba(126, 54, 54, 0.678);

@@ -20,6 +20,11 @@ const gameController = qSelectedBodyElements.field.addEventListener('click', (ev
 	const selector = event.target;
 	// if(selector.tagname !== 'DIV') return //? 
 
-	// console.log(globalGameData.getArrayChildrenCells());
-	console.log(globalGameData.arr);
+	console.log(board.getBoardWidth());
+
+	console.log(globalGameData.domElement);
+	console.log(globalGameData.getfieldCellsChildrens());
+	console.log(globalGameData.getTargetIndex());
+
+	
 });

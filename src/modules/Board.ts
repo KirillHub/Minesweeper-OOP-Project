@@ -89,6 +89,12 @@ export default class Board {
 			}
 		}
 	};
+
+	private boardCoordinates(gameStatesData: Array<object>) {
+		gameStatesData.forEach(item => {
+			console.log(item);
+		})
+	}
 }
 
 
