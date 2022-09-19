@@ -16,7 +16,7 @@ export default class GameController {
 
 	}
 
-	public userFieldsEventsController() {
+	public userFieldsEventsController()  {
 		this.domElement.field?.addEventListener('click', (event) => {
 			event.preventDefault();
 			const selector = event.target as HTMLInputElement;

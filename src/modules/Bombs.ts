@@ -72,7 +72,7 @@ export default class Bombs extends GameController {
 			event.preventDefault();
 			const selector = event.target as HTMLInputElement;
 
-			
+
 			/*
 				console.log('haqq we here');
 				if (typeof this.WIDTH !== "undefined" && typeof this.column !== 'undefined'
@@ -120,7 +120,7 @@ export default class Bombs extends GameController {
 
 	private pushNeighborFieldsIndex(row: number, column: number, WIDTH: number,
 		arrayBombNeighboursOnFirstClick: Array<number>, index: number) {
-		if (!field.isValidForOpenCell(row, column, WIDTH)) return false;
+		if (!field.isValidForOpenCell(row, column, WIDTH, arrayBombNeighboursOnFirstClick)) return false;
 
 		return arrayBombNeighboursOnFirstClick.push(index)
 	};

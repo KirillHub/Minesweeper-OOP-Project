@@ -39,76 +39,48 @@ export default class Fields extends GameController {
 		selector: HTMLInputElement, WIDTH: number | undefined, cellsArray: any,
 		bombsArray: Array<number>
 	*/
-	public openFieldCells(): any {
+	public controllerOpenFieldCells(): any {
 		this.userFieldsEventsController();
 
 		this.domElement.field?.addEventListener('click', (event) => {
 			event.preventDefault();
 			// this.userController();
-			let selector = event.target as HTMLInputElement;
+			const selector = event.target as HTMLInputElement;
+			const targetCell = this.cellsArray[this.index!] as HTMLInputElement | null;
 
 			if (typeof this.WIDTH !== "undefined" && typeof this.column !== 'undefined'
 				&& typeof this.index !== 'undefined' && typeof this.row !== 'undefined') {
-				this.open(this.row, this.column, selector, this.WIDTH, this.bombsArray, this.index);
+				this.openFieldCells(this.row, this.column, selector, this.WIDTH,
+					targetCell, this.bombsArray);
 			};
 
 		});
 	};
 
-	private open(row: number, column: number, selector: any,
-		WIDTH: number, bombsArray: Array<number>, index: number) {
+	private isBombCell(row: number, column: number,
+		WIDTH: number, bombsArray: any): any {//? : boolean | undefined
 
-		const targetCell = this.cellsArray[index] as HTMLInputElement | null;
-		if (targetCell?.disabled === true) return;
-		targetCell!.disabled = true;
+		if (this.isValidForOpenCell(row, column, WIDTH, bombsArray)) { return false; }
 
-		if (index >= 0) {
-			this.hoverEffectClassListStyle(targetCell!, this.domElement.flagsCounterBlock);
+		const index = row * WIDTH + column;
 
-			colorNumberArray.forEach((item, index) => {
-				++index;
-				if (this.getCellsCount(row, column, WIDTH, bombsArray,
-					index) > 0) {
-					if (this.getCellsCount(row, column, WIDTH, bombsArray,
-						index) == index) {
-						targetCell!.style.color = item;
-					}
-				}
-			});
+		if (bombsArray.length !== 0) {
+			return bombsArray.includes(index);
+		}
+	};
 
-			if (this.isBombCell(row, column, WIDTH, bombsArray,
-				index)) {
-				targetCell!.innerHTML = '💣';
-				return;
-			};
-
-			const count: any = this.getCellsCount(row, column, WIDTH, bombsArray,
-				index);
-			console.log(count); //! равен нулю
-			if (count !== 0) {
-				console.log(targetCell);
-				targetCell!.innerHTML = count;
-				return;
-			};
-
-			for (let x = -1; x <= 1; x++) {
-				for (let y = -1; y <= 1; y++) {
-					console.log(selector);
-					this.open(row + x, column + y, selector, WIDTH, bombsArray, index);
-				}
-			};
-		};
-
-
-	}
-
+	public isValidForOpenCell(row: number, column: number,
+		WIDTH: number, bombsArray: any): any {
+		return row >= 0 && row < WIDTH
+			&& column >= 0 && column < WIDTH
+	};
 
 	private getCellsCount(row: number, column: number,
-		WIDTH: number, bombsArray: Array<number>, index: number): any {
+		WIDTH: number, bombsArray: Array<number>): any {
 		let count = 0;
 		for (let x = -1; x <= 1; x++) {
 			for (let y = -1; y <= 1; y++) {
-				if (this.isBombCell(row + y, column + x, WIDTH, bombsArray, index)) {
+				if (this.isBombCell(row + y, column + x, WIDTH, bombsArray)) {
 					count++
 				};
 			};
@@ -116,25 +88,61 @@ export default class Fields extends GameController {
 		return count;
 	}
 
-	private isBombCell(row: number, column: number,
-		WIDTH: number, bombsArray: any, index: number): boolean | undefined {
+	private openFieldCells(row: number, column: number, selector: any,
+		WIDTH: number, cellsArray: any, bombsArray: Array<number>) {
 
-		if (this.isValidForOpenCell(row, column, WIDTH)) return false;
+			const index = row * WIDTH + column;
+		
 
-		if (bombsArray.length !== 0) {
-			// console.log(bombsArray.includes(index));
-			return bombsArray.includes(index);
-		}
+		const targetCell:any = this.cellsArray[index]//!  as HTMLInputElement | null;
+		if (targetCell?.disabled === true) return;
+		targetCell!.disabled = true;
+		
+
+		// const index = row * WIDTH + column;
+		// const targetCell = cellsArray[index];
+		// console.log(targetCell);
+		// if (targetCell.disabled === true) return;
+		// targetCell.disabled = true;
+
+		if (index >= 0) {
+			this.hoverEffectClassListStyle(targetCell!, this.domElement.flagsCounterBlock);
+
+			colorNumberArray.forEach((item, index) => {
+				++index;
+				if (this.getCellsCount(row, column, WIDTH, bombsArray) > 0) {
+					if (this.getCellsCount(row, column, WIDTH, bombsArray) == index) {
+						targetCell!.style.color = item;
+					}
+				}
+			});
+
+			if (this.isBombCell(row, column, WIDTH, bombsArray)) {
+				targetCell!.innerHTML = '💣';
+				return;
+			};
+
+			const count: any = this.getCellsCount(row, column, WIDTH, bombsArray);
+			if (count !== 0) {
+				console.log(targetCell);
+				targetCell!.innerHTML = count;
+				return
+			};
+
+			for (let x = -1; x <= 1; x++) {
+				for (let y = -1; y <= 1; y++) {
+					this.openFieldCells(row + x, column + y, selector, WIDTH,cellsArray, bombsArray);
+				}
+			};
+		};
+
+
 	};
 
-	public isValidForOpenCell(row: number, column: number,
-		WIDTH: number): any {
-		row >= 0 && row < WIDTH
-			&& column >= 0 && column < WIDTH
-	};
+
 
 	private hoverEffectClassListStyle(target: HTMLInputElement,
-		flagsCounterBlock: any): void { //! later change
+		flagsCounterBlock: any): any { //! later change
 		let countingFlags = 0;
 		if (target.textContent == '🚩') countingFlags++;
 
@@ -157,4 +165,4 @@ export default class Fields extends GameController {
 }
 
 export const field = new Fields(colorNumberArray);
-console.log(field.openFieldCells());
+console.log(field.controllerOpenFieldCells());

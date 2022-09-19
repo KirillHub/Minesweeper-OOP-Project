@@ -19,3 +19,18 @@ const field = new Fields();
 // console.log(bombs.WIDTH);
 
 // console.log(bombs.);
+gameController.userFieldsEventsController();
+console.log(gameController.WIDTH);
+const fieldy = document.querySelector('.field').addEventListener('click', event => {
+	event.preventDefault();
+	const selector = event.target;
+
+	if (selector.tagName !== 'DIV') return;
+
+	// const but = document.querySelector('.buttons-config')..addEventListener('click,' event => {
+	// 	event.preventDefault();
+	// 	const selector = event.target;
+	// })
+
+
+});
