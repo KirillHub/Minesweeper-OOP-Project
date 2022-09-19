@@ -11,33 +11,3 @@
 		"src/minesweeperMain.js",
 	]
 }
-/*
-	"include": [
-		"src/modules"
-		// "src/modules/Board.ts"
-		/*	"src/modules/Board.ts",
-		"src/modules/CheckExtremeBorders.ts",
-		"src/modules/neighborsSearcher.ts",
-		"src/modules/randomizeMines.ts",
-		"src/modules/CreateBoard.ts",
-		"src/modules/ControllerAnimation.ts",
-		"src/modules/Timer.ts",
-		"src/modules/Types.ts",
-		"src/modules/GameManager.ts",
-	],
-	"exclude": [
-		"src/minesweeperMain.js", 
-		// "App.test.js",
-		"src/minesweeperFunctionalVersion.js",
-		// "src/modules/Board.ts",
-		"src/modules/CheckExtremeBorders.ts",
-		"src/modules/neighborsSearcher.ts",
-		"src/modules/randomizeMines.ts",
-		"src/modules/CreateBoard.ts",
-		"src/modules/ControllerAnimation.ts",
-		"src/modules/Timer.ts",
-		"src/modules/Types.ts",
-		"src/modules/GameManager.ts",
-		"src/modules/reserveSapper.js"
-	],
-*/

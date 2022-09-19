@@ -33,18 +33,15 @@ export default class Board {
 				switch (target.textContent) {
 					case "Easy":
 						this.domElement.field?.classList.add('field_easy');
-						this.boardCreation(arrayGameModeStates[0]);
-						// this.boardCoordinates(arrayGameModeStates[0]);
+						this.boardRender(arrayGameModeStates[0]);
 						break;
 					case "Normal":
 						this.domElement.field?.classList.add('field_normal');
-						this.boardCreation(arrayGameModeStates[1]);
-						// this.boardCoordinates(arrayGameModeStates[1]);
+						this.boardRender(arrayGameModeStates[1]);
 						break;
 					case "Hard":
 						this.domElement.field?.classList.add('field_hard');
-						this.boardCreation(arrayGameModeStates[2]);
-						// this.boardCoordinates(arrayGameModeStates[2]);
+						this.boardRender(arrayGameModeStates[2]);
 						break;
 					default:
 						return;
@@ -58,12 +55,12 @@ export default class Board {
 		});
 	};
 
-	private boardCreation(gameStatesData: any): void {
+	private boardRender(gameStatesData: any): void {
 		if (this.counter !== -1) this.counter = -1;
 
 		if (typeof this.domElement.flagsCounterBlock?.innerText !== "undefined") {
 			this.domElement.flagsCounterBlock.innerText = gameStatesData.BOMBS_COUNT;
-		}
+		};
 
 		try {
 			for (let i: number = 0; i < gameStatesData.WIDTH; i++) {
@@ -92,12 +89,6 @@ export default class Board {
 			}
 		}
 	};
-
-	// private boardCoordinates(gameStatesData: any) {
-	// 	console.log(gameStatesData);
-	// 	// const WIDTH: number = gameStatesData.WIDTH;
-	// 	// console.log(WIDTH);
-	// }
 }
 
 
