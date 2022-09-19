@@ -3,43 +3,16 @@ import DomElements from "../gameData/types/DOMElementTypes.js";
 import { qSelectedBodyElements } from "../gameData/bodyElementsClassNameData.js";
 import { field } from "./Fields.js";
 
-interface Variables {
-	row: number,
-	column: number,
-	WIDTH: number,
-	arrayBombNeighboursOnFirstClick: Array<number>,
-	index: number
+
+interface GameControllerTypes {
+	row?: number,
+	column?: number,
+	WIDTH?: number,
+	arrayBombNeighboursOnFirstClick?: Array<number>,
+	index?: number
 };
 
 
-interface TeslaModelS {
-	length: number;
-	width: number;
-	wheelbase: number;
-	seatingCapacity: number;
-	getTyrePressure: () => number;
-	getRemCharging: () => number;
-}
-function buildTeslaModelS(teslaObj: TeslaModelS) {
-}
-
-// buildTeslaModelS({
-// length: 169,
-/*
-length: 196,
-width: 86,
-wheelbase: 116,
-seatingCapacity: 4,
-getTyrePressure: function () {
-	let tyrePressure = 20 // Evaluated after doing a few complex computations!
-	return tyrePressure
-},
-getRemCharging: function () {
-	let remCharging = 20 // Evaluated after doing a few complex computations!
-	return remCharging
-}
-*/
-// });
 
 
 export default class Bombs extends GameController {
@@ -48,6 +21,7 @@ export default class Bombs extends GameController {
 	private bombsRandomArrayGenerated: Array<number>;
 	public bombsArray: Array<number> //! временная заглушка
 
+	private gameControllerTypes: GameControllerTypes;
 
 	constructor() {
 		super(qSelectedBodyElements);
@@ -56,53 +30,109 @@ export default class Bombs extends GameController {
 		field;
 		this.bombsArray = [];
 
-		interface Variables {
-			(row: number,
-				column: number,
-				WIDTH: number,
-				arrayBombNeighboursOnFirstClick: Array<number>,
-				index: number): void;
+		this.gameControllerTypes = {
+			row: this.row,
+			column: this.column,
+			WIDTH: this.WIDTH,
+			arrayBombNeighboursOnFirstClick: this.bombsArray,
+			index: this.index
 		}
 	};
 
-	public eventController() {
+
+
+	public eventControllerFields() {
 		this.userFieldsEventsController();
-		// console.log(this.userButtonsEventsController()); 
-		
+		// console.log(this.userButtonsEventsController()); //!
+
 
 		this.domElement.field?.addEventListener('click', (event) => {
+			event.preventDefault();
 			const selector = event.target as HTMLInputElement;
-			console.log(selector);
-			console.log(this.WIDTH);
 
+			/*
+			console.log('haqq we here');
 			if (typeof this.WIDTH !== "undefined" && typeof this.column !== 'undefined'
 				&& typeof this.index !== 'undefined' && typeof this.row !== 'undefined') {
 
 				this.bombsFirstClickAnimation(this.row, this.column, this.WIDTH,
-					this.bombsArray, this.index);
+					this.bombsArray, this.index)
 
 			};
+			*/
 		});
 
 	};
 
+	public eventControllerButtons() {
+		this.userFieldsEventsController();
+		// this.userButtonsEventsController();//! 
+
+		this.domElement.buttonsParentDiv?.addEventListener('click', (event) => {
+			event.preventDefault();
+			const selector = event.target as HTMLInputElement;
+
+			
+			/*
+				console.log('haqq we here');
+				if (typeof this.WIDTH !== "undefined" && typeof this.column !== 'undefined'
+					&& typeof this.index !== 'undefined' && typeof this.row !== 'undefined') {
+	
+					this.bombsFirstClickAnimation(this.row, this.column, this.WIDTH,
+						this.bombsArray, this.index)
+	
+				};
+			*/
+		});
+	}
+
 
 	private bombsFirstClickAnimation(row: number, column: number, WIDTH: number,
-		arrayBombNeighboursOnFirstClick: Array<number>, index: number
-	) {
+		arrayBombNeighboursOnFirstClick: Array<number>, index: number) {
+
 		if (arrayBombNeighboursOnFirstClick.length === 0) {
-			this.pushNeighborFieldsIndex(row, column, WIDTH);
-		}
+			this.pushNeighborFieldsIndex(row, column, WIDTH,
+				arrayBombNeighboursOnFirstClick, index);
+		};
+
+		this.pushNeighborFieldsIndex(row, column, WIDTH,
+			arrayBombNeighboursOnFirstClick, index);
+
+		this.openNeighborsFields(row, column, WIDTH,
+			arrayBombNeighboursOnFirstClick, index);
+
+		arrayBombNeighboursOnFirstClick.forEach(neighbors => {
+			this.setObjectOfRandomMines.add(neighbors);
+		});
+
+		console.log('we here');
+
+		/*
+			do {
+				this.setObjectOfRandomMines.add(this.randomizerMinesIndex(
+					0, 225));
+			} while (this.setObjectOfRandomMines.size < ())v
+		*/
+
+
+
+	};
+
+	private pushNeighborFieldsIndex(row: number, column: number, WIDTH: number,
+		arrayBombNeighboursOnFirstClick: Array<number>, index: number) {
+		if (!field.isValidForOpenCell(row, column, WIDTH)) return false;
+
 		return arrayBombNeighboursOnFirstClick.push(index)
 	};
 
-	private pushNeighborFieldsIndex(row: number, column: number, WIDTH: number) {
-		if (!field.isValidForOpenCell(row, column, WIDTH)) return false;
-
-	};
-
-	private openNeighborsFields(row: number, column: number, WIDTH: number) {
-
+	private openNeighborsFields(row: number, column: number, WIDTH: number,
+		arrayBombNeighboursOnFirstClick: Array<number>, index: number) {
+		for (let x = -1; x <= 1; x++) {
+			for (let y = -1; y <= 1; y++) {
+				(this.pushNeighborFieldsIndex(row + y, column + x, WIDTH,
+					arrayBombNeighboursOnFirstClick, index))
+			}
+		}
 	}
 
 	private randomizerMinesIndex(minArrayIndex: number, maxArrayIndex: number): number {
@@ -114,4 +144,5 @@ export default class Bombs extends GameController {
 }
 
 export const bombs = new Bombs();
-console.log(bombs.eventController());
+// console.log(bombs.eventControllerFields());
+// console.log(bombs.eventControllerButtons());

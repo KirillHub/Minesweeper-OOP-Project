@@ -26,14 +26,17 @@ export default class GameController {
 			this.getNumberBoardColumn();
 			this.getNumberBoardRow();
 
+		
 		});
 	};
 
-	public userButtonsEventsController() {
+	public userButtonsEventsController() { //! maybe later delet
 		this.domElement.buttonsParentDiv?.addEventListener('click', (event) => {
 			event.preventDefault();
 			const selector = event.target as HTMLInputElement;
 
+			console.log(this.domElement.field?.childNodes.length);
+			// console.log('comeon we here');
 		});
 	}
 
