@@ -1,4 +1,4 @@
-'use strict'
+'use strict';
 
 import { arrayGameModeStates } from "../dist/gameData/gameModeStatesData.js";
 import { qSelectedBodyElements } from "../dist/gameData/bodyElementsClassNameData.js";
@@ -7,18 +7,21 @@ import Board from "../dist/modules/Board.js";
 import Bombs from "../dist/modules/Bombs.js";
 import Fields from "../dist/modules/Fields.js";
 
-const board = new Board(qSelectedBodyElements, arrayGameModeStates);
+
+const arrayFieldVisualSettingClasses = ['field_easy', 'field_normal', 'field_hard'];
+
+
+
+const board = new Board(qSelectedBodyElements, arrayGameModeStates,
+	arrayFieldVisualSettingClasses
+);
 board.toggleFieldStyleStates();
 
 const gameController = new GameController(qSelectedBodyElements);
 const bombs = new Bombs();
 const field = new Fields();
 
-// console.log(gameController.userController());
-// console.log(bombs.cringe());
-// console.log(bombs.WIDTH);
 
-// console.log(bombs.);
 gameController.userFieldsEventsController();
 console.log(gameController.WIDTH);
 const fieldy = document.querySelector('.field').addEventListener('click', event => {

@@ -1,6 +1,8 @@
 import { arrayGameModeStates } from "../gameData/gameModeStatesData.js";
 import DomElements from "../gameData/types/DOMElementTypes.js";
 
+
+
 export default class Board {
 	protected domElement: DomElements;
 	private counter: number;
@@ -8,11 +10,13 @@ export default class Board {
 
 	constructor(
 		protected domElements: DomElements,
-		protected activatorGameStatesMode: object | Array<Object>,
+		private activatorGameStatesMode: object | Array<Object>,
+		private arrayFieldVisualSettingClasses: Array<string>,
 	) {
 		this.domElement = domElements;
 		this.counter = -1;
 		this.number = 0;
+		this.arrayFieldVisualSettingClasses = arrayFieldVisualSettingClasses;
 	}
 
 	public toggleFieldStyleStates(): void {
@@ -32,15 +36,15 @@ export default class Board {
 
 				switch (target.textContent) {
 					case "Easy":
-						this.domElement.field?.classList.add('field_easy');
+						this.domElement.field?.classList.add(this.arrayFieldVisualSettingClasses[0]);
 						this.boardRender(arrayGameModeStates[0]);
 						break;
 					case "Normal":
-						this.domElement.field?.classList.add('field_normal');
+						this.domElement.field?.classList.add(this.arrayFieldVisualSettingClasses[1]);
 						this.boardRender(arrayGameModeStates[1]);
 						break;
 					case "Hard":
-						this.domElement.field?.classList.add('field_hard');
+						this.domElement.field?.classList.add(this.arrayFieldVisualSettingClasses[2]);
 						this.boardRender(arrayGameModeStates[2]);
 						break;
 					default:
@@ -54,6 +58,14 @@ export default class Board {
 			}
 		});
 	};
+
+	/*
+		private appendClassesForParentDIV(div: HTMLDivElement) {
+			this.arrayFieldChildrenClasses.forEach(childrenClassName => {
+				div.classList.add(childrenClassName);
+			})
+		};
+	*/
 
 	private boardRender(gameStatesData: any): void {
 		if (this.counter !== -1) this.counter = -1;
@@ -69,8 +81,9 @@ export default class Board {
 					this.number = i + j + 2;
 					const unpairMaskBlock: HTMLDivElement = document.createElement('div');
 					const pairMaskBlock: HTMLDivElement = document.createElement('div');
+
 					unpairMaskBlock.classList.add('fields__hover-class', "fields__cell");
-					pairMaskBlock.classList.add('fields__hover-class', "fields__cell");
+					pairMaskBlock.classList.add('fields__hover-class', "fields__cell")
 
 					if (this.number % 2 === 0) {
 						pairMaskBlock.style.backgroundColor = '#a9d751';
@@ -90,6 +103,4 @@ export default class Board {
 		}
 	};
 }
-
-
 
